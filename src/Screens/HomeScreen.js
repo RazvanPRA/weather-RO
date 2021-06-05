@@ -18,8 +18,6 @@ const HomeScreen = ({navigation}) => {
   const [hourData, setHourData] = useState(null);
   const [location, setLocation] = useState('Brașov');
 
-  console.log({hourData});
-
   useEffect(() => {
     if (data && data.coord.lon && data.coord.lat) {
       fetch(
@@ -63,9 +61,9 @@ const HomeScreen = ({navigation}) => {
         {data && (
           <View>
             <Line />
-            <TheWheatherToday />
+            {data && <TheWheatherToday data={data} />}
             <Line />
-            <InfoAboutWheather />
+            {data && <InfoAboutWheather data={data} />}
             <Line />
           </View>
         )}

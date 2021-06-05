@@ -2,14 +2,22 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {COLORS} from '../Const/COLORS';
 
-const TheWeatherToday = () => {
+const TheWeatherToday = ({data}) => {
+  const {main, weather} = data;
   return (
     <View style={styles.content}>
       <View style={styles.container}>
-        <Text style={styles.firstText}>Clear sky</Text>
-        <Text style={styles.secondText}>56°C</Text>
+        <Text style={styles.firstText}>{weather[0].description}</Text>
+        <Text style={styles.secondText}>
+          {(main.temp - 273.15).toFixed(1)} °C
+        </Text>
       </View>
-      <Image source={require('../../Img/02d2x.png')} style={styles.container} />
+      <Image
+        source={{
+          uri: `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`,
+        }}
+        style={styles.container}
+      />
     </View>
   );
 };
@@ -22,6 +30,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   container: {
+    flex: 1,
+    resizeMode: 'contain',
     paddingTop: 9,
     paddingLeft: 20,
   },

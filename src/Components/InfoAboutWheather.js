@@ -2,16 +2,23 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../Const/COLORS';
 
-const InfoAboutWheather = () => {
+const InfoAboutWheather = ({data}) => {
+  const {main} = data;
   return (
     <View style={styles.content}>
       <View style={styles.container}>
         <Text style={styles.textLeft}>Feels Like:</Text>
-        <Text style={styles.textLeft}>Min: 52°C</Text>
+        <Text style={styles.textLeft}>
+          Min: {(main.temp_min - 273.15).toFixed(1)}°C
+        </Text>
       </View>
       <View style={styles.container}>
-        <Text style={styles.textTemp}>56°C</Text>
-        <Text style={styles.text}>Max: 60°C</Text>
+        <Text style={styles.textTemp}>
+          {(main.feels_like - 273.15).toFixed(1)}°C
+        </Text>
+        <Text style={styles.text}>
+          Max: {(main.temp_max - 273.15).toFixed(1)}°C
+        </Text>
       </View>
     </View>
   );

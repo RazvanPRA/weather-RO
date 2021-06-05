@@ -1,14 +1,16 @@
 import React from 'react';
-import {StyleSheet, Pressable, Text} from 'react-native';
+import {StyleSheet, Pressable, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {COLORS} from '../Const/COLORS';
 
 const InputDays = () => {
   return (
-    <Pressable style={styles.container}>
-      <Text style={styles.text}>7 day forecast</Text>
-      <Icon name="chevron-right" color="#403D56" style={styles.icon} />
-    </Pressable>
+    <View>
+      {/* <Pressable style={styles.container}>
+        <Text style={styles.text}>7 day forecast</Text>
+        <Icon name="chevron-right" color="#403D56" style={styles.icon} />
+      </Pressable> */}
+    </View>
   );
 };
 
