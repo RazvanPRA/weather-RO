@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, ScrollView, Dimensions} from 'react-native';
 import HourCards from './HourCards';
 
 const CarouselMeteo = ({hourData}) => {
-  console.log(hourData);
   return (
     <View>
       <ScrollView
