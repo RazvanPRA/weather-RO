@@ -6,7 +6,7 @@ import moment from 'moment';
 const HourCards = ({item}) => {
   const {temp, weather, dt} = item;
   const weatherIcon = weather[0].icon;
-  const formatedTime = moment(dt * 1000).format('hh:mm');
+  const formatedTime = moment(dt * 1000).format('HH:mm');
 
   return (
     <View style={styles.container}>

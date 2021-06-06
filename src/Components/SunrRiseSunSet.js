@@ -6,13 +6,13 @@ import {COLORS} from '../Const/COLORS';
 const SunrRiseSunSet = ({data}) => {
   console.log({data});
   const {sys} = data;
-  const sunrise = moment(sys.sunrise * 1000).format('hh:mm');
-  const sunset = moment(sys.sunset * 1000).format('hh:mm');
+  const sunrise = moment(sys.sunrise * 1000).format('HH:mm');
+  const sunset = moment(sys.sunset * 1000).format('HH:mm');
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Sunrise: {sunrise && sunrise}am</Text>
-      <Text style={styles.text}>Sunset: {sunset && sunset}pm</Text>
+      <Text style={styles.text}>Sunrise: {sunrise && sunrise}</Text>
+      <Text style={styles.text}>Sunset: {sunset && sunset}</Text>
     </View>
   );
 };

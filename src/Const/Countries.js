@@ -257,6 +257,7 @@ const Countries = [
   'Fundulea',
   'Novaci',
   'Azuga',
+  'Pietroșița',
   'Aninoasa',
   'Săliște',
   'Băile Herculane',

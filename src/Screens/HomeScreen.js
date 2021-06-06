@@ -33,7 +33,7 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     if (Countries.includes(location)) {
       fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=455d3a7930642294795fe0299dcfbcc5`,
+        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=455d3a7930642294795fe0299dcfbcc5`,
       )
         .then((response) => response.json())
         .then((json) => setData(json))
