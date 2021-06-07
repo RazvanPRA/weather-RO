@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from './src/Screens/HomeScreen';
-import DetailsScreen from './src/Screens/DetailsScreen';
+import SevenDayForcast from './src/Screens/SevenDayForcast';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="SevenDayForcast" component={SevenDayForcast} />
       </Stack.Navigator>
     </NavigationContainer>
   );
