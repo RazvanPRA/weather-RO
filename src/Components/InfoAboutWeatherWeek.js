@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../Const/COLORS';
 
-const InfoAboutWheather = ({hourData}) => {
+const InfoAboutWheather = ({hourData, index}) => {
   const {daily} = hourData;
 
   return (
@@ -10,15 +10,15 @@ const InfoAboutWheather = ({hourData}) => {
       <View style={styles.container}>
         <Text style={styles.textLeft}>Feels Like:</Text>
         <Text style={styles.textLeft}>
-          Min: {(daily[0].temp.min - 273.15).toFixed(1)}°C
+          Min: {(daily[index].temp.min - 273.15).toFixed(1)}°C
         </Text>
       </View>
       <View style={styles.container}>
         <Text style={styles.textTemp}>
-          {(daily[0].feels_like.day - 273.15).toFixed(1)}°C
+          {(daily[index].feels_like.day - 273.15).toFixed(1)}°C
         </Text>
         <Text style={styles.text}>
-          Max: {(daily[0].temp.max - 273.15).toFixed(1)}°C
+          Max: {(daily[index].temp.max - 273.15).toFixed(1)}°C
         </Text>
       </View>
     </View>
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   content: {
     flexDirection: 'row',
     justifyContent: 'center',
+    paddingBottom: 20,
   },
   container: {
     alignItems: 'center',

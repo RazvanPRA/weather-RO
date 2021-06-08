@@ -7,7 +7,10 @@ const TheWeatherToday = ({data}) => {
   return (
     <View style={styles.content}>
       <View style={styles.container}>
-        <Text style={styles.firstText}>{weather[0].description}</Text>
+        <Text style={styles.firstText}>
+          {weather[0].description.charAt(0).toUpperCase() +
+            weather[0].description.slice(1)}
+        </Text>
         <Text style={styles.secondText}>
           {(main.temp - 273.15).toFixed(1)} °C
         </Text>

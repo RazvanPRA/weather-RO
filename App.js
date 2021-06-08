@@ -4,6 +4,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from './src/Screens/HomeScreen';
 import SevenDayForcast from './src/Screens/SevenDayForcast';
+import CustomBtn from './src/Components/CustomBtn';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -17,7 +18,11 @@ export default function App() {
           name="Home"
           component={HomeScreen}
         />
-        <Stack.Screen name="SevenDayForcast" component={SevenDayForcast} />
+        <Stack.Screen
+          name="SevenDayForcast"
+          options={{headerLeft: () => <CustomBtn />}}
+          component={SevenDayForcast}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
