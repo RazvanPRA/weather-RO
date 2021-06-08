@@ -31,7 +31,7 @@ const HeaderSearch = ({setLocation, location, setLoading}) => {
       .replace(/[Țț]/g, 't')
       .replace(/[_-]/g, ' ')
       .toLowerCase();
-    // console.log({formatedCity});
+
     return formatedCity.indexOf(formatedLocation) >= 0;
   });
   useEffect(() => {

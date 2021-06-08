@@ -3,7 +3,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../Const/COLORS';
 
 const Coords = ({data}) => {
-  console.log({data});
   const {coord} = data;
   return (
     <View style={styles.container}>
