@@ -2,19 +2,22 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {COLORS} from '../Const/COLORS';
 
-const TheWeatherToday = ({hourData}) => {
+const TheWeatherToday = ({hourData, index}) => {
   const {daily} = hourData;
   return (
     <View style={styles.content}>
       <View style={styles.container}>
-        <Text style={styles.firstText}>{daily[0].weather[0].description}</Text>
+        <Text style={styles.firstText}>
+          {daily[index].weather[0].description.charAt(0).toUpperCase() +
+            daily[index].weather[0].description.slice(1)}
+        </Text>
         <Text style={styles.secondText}>
-          {(daily[0].temp.day - 273.15).toFixed(1)} °C
+          {(daily[index].temp.day - 273.15).toFixed(1)} °C
         </Text>
       </View>
       <Image
         source={{
-          uri: `https://openweathermap.org/img/wn/${daily[0].weather[0].icon}@2x.png`,
+          uri: `https://openweathermap.org/img/wn/${daily[index].weather[0].icon}@2x.png`,
         }}
         style={styles.container}
       />

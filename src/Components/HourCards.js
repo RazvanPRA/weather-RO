@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
 import {COLORS} from '../Const/COLORS';
 import moment from 'moment';
 
-const HourCards = ({item}) => {
+const HourCards = ({item, index}) => {
   const {temp, weather, dt} = item;
   const weatherIcon = weather[0].icon;
   const formatedTime = moment(dt * 1000).format('HH:mm');

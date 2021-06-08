@@ -3,9 +3,9 @@ import {StyleSheet, Text, View} from 'react-native';
 import moment from 'moment';
 import {COLORS} from '../Const/COLORS';
 
-const Day = ({hourData}) => {
+const Day = ({hourData, index}) => {
   const {daily} = hourData;
-  const Day = moment(daily[0].dt * 1000).format('dddd D.MMM');
+  const Day = moment(daily[index].dt * 1000).format('dddd D.MMMM');
   return (
     <View>
       <Text style={styles.text}>{Day}</Text>
