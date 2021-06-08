@@ -70,7 +70,7 @@ const HomeScreen = ({navigation}) => {
       </View>
       {hourData && <CarouselMeteo hourData={hourData} />}
       <View style={styles.container2}>
-        <InputDays />
+        {hourData && <InputDays hourData={hourData} navigation={navigation} />}
         {data && <SunrRiseSunSetCoord style={styles.sun} data={data} />}
       </View>
     </View>

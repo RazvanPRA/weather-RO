@@ -4,7 +4,6 @@ import moment from 'moment';
 import {COLORS} from '../Const/COLORS';
 
 const SunrRiseSunSet = ({data}) => {
-  console.log({data});
   const {sys} = data;
   const sunrise = moment(sys.sunrise * 1000).format('HH:mm');
   const sunset = moment(sys.sunset * 1000).format('HH:mm');
