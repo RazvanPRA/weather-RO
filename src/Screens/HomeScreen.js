@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 import HeaderSearch from '../Components/HeaderSearch';
 import TheWheatherToday from '../Components/TheWeatherToday ';
 import InfoAboutWheather from '../Components/InfoAboutWheather';
-// import moment from 'moment';
 import Line from '../Components/Line';
 import CarouselMeteo from '../Components/CarouselMeteo';
 import InputDays from '../Components/InputDays';
@@ -14,7 +13,6 @@ import Countries from '../Const/Countries';
 const HomeScreen = ({navigation}) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  // const today = moment().format('MMMM/DD/yyyy');
   const [hourData, setHourData] = useState(null);
   const [location, setLocation] = useState('Brașov');
 

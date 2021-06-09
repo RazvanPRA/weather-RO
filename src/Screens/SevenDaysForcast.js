@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import InfoAboutWheather from '../Components/InfoAboutWeatherWeek';
 import Line from '../Components/Line';
@@ -8,7 +8,6 @@ import Day from '../Components/Day';
 
 const SevenDaysForcast = ({route, navigation}) => {
   const {hourData, data} = route.params;
-  console.log({data});
   useEffect(() => {
     navigation.setOptions({
       title: data.name + ` - 7 days forecast`,
