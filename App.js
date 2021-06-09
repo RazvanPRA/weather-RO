@@ -3,8 +3,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from './src/Screens/HomeScreen';
-import SevenDayForcast from './src/Screens/SevenDayForcast';
+import SevenDaysForcast from './src/Screens/SevenDaysForcast';
 import CustomBtn from './src/Components/CustomBtn';
+import {COLORS} from './src/Const/COLORS';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -19,9 +20,21 @@ export default function App() {
           component={HomeScreen}
         />
         <Stack.Screen
-          name="SevenDayForcast"
-          options={{headerLeft: () => <CustomBtn />}}
-          component={SevenDayForcast}
+          name="SevenDaysForcast"
+          options={{
+            headerLeft: () => <CustomBtn />,
+            headerTitleAlign: 'center',
+            headerTitleStyle: {
+              fontSize: 20,
+              fontWeight: 'bold',
+              color: COLORS.textDark,
+            },
+            headerStyle: {
+              backgroundColor: COLORS.primary,
+              elevation: 10,
+            },
+          }}
+          component={SevenDaysForcast}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -3,13 +3,16 @@ import {StyleSheet, Pressable, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {COLORS} from '../Const/COLORS';
 
-const InputDays = ({hourData, navigation}) => {
+const InputDays = ({hourData, navigation, data}) => {
   return (
     <View>
       <Pressable
         style={styles.container}
         onPress={() => {
-          navigation.navigate('SevenDayForcast', {hourData: hourData});
+          navigation.navigate('SevenDaysForcast', {
+            hourData: hourData,
+            data: data,
+          });
         }}>
         <Text style={styles.text}>7 day forecast</Text>
         <Icon name="chevron-right" color="#403D56" style={styles.icon} />
