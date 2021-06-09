@@ -70,7 +70,9 @@ const HomeScreen = ({navigation}) => {
       </View>
       {hourData && <CarouselMeteo hourData={hourData} />}
       <View style={styles.container2}>
-        {hourData && <InputDays hourData={hourData} navigation={navigation} />}
+        {hourData && (
+          <InputDays data={data} hourData={hourData} navigation={navigation} />
+        )}
         {data && <SunrRiseSunSetCoord style={styles.sun} data={data} />}
       </View>
     </View>
@@ -108,8 +110,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 9,
     textAlign: 'center',
-  },
-  sun: {
-    // alignSelf: ,
   },
 });
