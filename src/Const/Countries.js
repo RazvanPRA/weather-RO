@@ -207,7 +207,6 @@ const Countries = [
   'Seini',
   'Târgu Cărbunești',
   'Bălan',
-  'Eforie',
   'Zlatna',
   'Roznov',
   'Tălmaciu',
