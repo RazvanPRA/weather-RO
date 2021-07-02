@@ -9,6 +9,7 @@ import InputDays from '../Components/InputDays';
 import SunrRiseSunSetCoord from '../Components/SunrRiseSunSetCoord';
 import {COLORS} from '../Const/COLORS';
 import Countries from '../Const/Countries';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ({navigation}) => {
   const [isLoading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ const HomeScreen = ({navigation}) => {
         .finally(() => setLoading(false));
     }
   }, [location]);
+
   // if (isLoading) {
   //   return (
   //     <View style={styles.loudingContainer}>
@@ -47,10 +49,35 @@ const HomeScreen = ({navigation}) => {
   //   );
   // }
 
+  const save = async (item) => {
+    try {
+      await AsyncStorage.setItem('location', item);
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const load = async () => {
+    try {
+      let location = await AsyncStorage.getItem('location');
+
+      if (location !== null) {
+        setLocation(location);
+      }
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
   return (
     <View style={styles.body}>
       <View style={styles.container}>
         <HeaderSearch
+          save={save}
           location={location}
           setLocation={setLocation}
           setLoading={setLoading}
