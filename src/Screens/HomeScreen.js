@@ -10,6 +10,8 @@ import SunrRiseSunSetCoord from '../Components/SunrRiseSunSetCoord';
 import {COLORS} from '../Const/COLORS';
 import Countries from '../Const/Countries';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/Entypo';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const HomeScreen = ({navigation}) => {
   const [isLoading, setLoading] = useState(true);
@@ -82,7 +84,12 @@ const HomeScreen = ({navigation}) => {
           setLocation={setLocation}
           setLoading={setLoading}
         />
-        <Text style={styles.text}>Today</Text>
+        <View style={styles.head}>
+          <Text style={styles.text}>Today</Text>
+          <View style={styles.iconContent}>
+            <Icon name="heart-outlined" color="#666666" style={styles.icon} />
+          </View>
+        </View>
         {data && (
           <View>
             <Line />
@@ -98,6 +105,20 @@ const HomeScreen = ({navigation}) => {
         {hourData && (
           <InputDays data={data} hourData={hourData} navigation={navigation} />
         )}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.arrayCities}
+          style={styles.scroll}>
+          <View style={styles.arrayCities}>
+            <Text style={styles.cities}>Brasov</Text>
+            <Text style={styles.cities}>Brasov</Text>
+            <Text style={styles.cities}>Brasov</Text>
+            <Text style={styles.cities}>Brasov</Text>
+            <Text style={styles.cities}>Brasov</Text>
+            <Text style={styles.cities}>Brasov</Text>
+            <Text style={styles.cities}>Brasov</Text>
+          </View>
+        </ScrollView>
         {data && <SunrRiseSunSetCoord style={styles.sun} data={data} />}
       </View>
     </View>
@@ -134,6 +155,35 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 9,
+    flex: 1,
     textAlign: 'center',
+  },
+  icon: {
+    textAlign: 'center',
+    fontSize: 31,
+  },
+  head: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  iconContent: {
+    justifyContent: 'center',
+  },
+  arrayCities: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+  },
+  cities: {
+    backgroundColor: COLORS.secondary,
+    padding: 5,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: COLORS.textDark,
+    borderRadius: 18,
+  },
+  scroll: {
+    paddingTop: 5,
+    backgroundColor: COLORS.primary,
   },
 });
