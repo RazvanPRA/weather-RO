@@ -101,24 +101,33 @@ const HomeScreen = ({navigation}) => {
         )}
       </View>
       {hourData && <CarouselMeteo hourData={hourData} />}
+
       <View style={styles.container2}>
         {hourData && (
           <InputDays data={data} hourData={hourData} navigation={navigation} />
         )}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.arrayCities}
-          style={styles.scroll}>
-          <View style={styles.arrayCities}>
-            <Text style={styles.cities}>Brasov</Text>
-            <Text style={styles.cities}>Brasov</Text>
-            <Text style={styles.cities}>Brasov</Text>
-            <Text style={styles.cities}>Brasov</Text>
-            <Text style={styles.cities}>Brasov</Text>
-            <Text style={styles.cities}>Brasov</Text>
-            <Text style={styles.cities}>Brasov</Text>
-          </View>
-        </ScrollView>
+      </View>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        decelerationRate="fast"
+        style={styles.scroll}>
+        <View style={styles.arrayCities}>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+          <Text style={styles.cities}>Brasov</Text>
+        </View>
+      </ScrollView>
+      <View style={styles.container2}>
         {data && <SunrRiseSunSetCoord style={styles.sun} data={data} />}
       </View>
     </View>
@@ -176,11 +185,13 @@ const styles = StyleSheet.create({
   },
   cities: {
     backgroundColor: COLORS.secondary,
-    padding: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     fontSize: 18,
     fontWeight: 'bold',
     color: COLORS.textDark,
     borderRadius: 18,
+    marginHorizontal: 4.5,
   },
   scroll: {
     paddingTop: 5,
