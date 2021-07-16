@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {COLORS} from '../Const/COLORS';
 import Countries from '../Const/Countries';
 
-const HeaderSearch = ({setLocation, location, setLoading, save}) => {
+const HeaderSearch = ({setLocation, location, setLoading, saveCity}) => {
   const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   const searchResult = Countries.filter((item) => {
@@ -71,7 +71,7 @@ const HeaderSearch = ({setLocation, location, setLoading, save}) => {
                     setLocation(item);
                     Keyboard.dismiss();
                     setLoading(true);
-                    save(item);
+                    saveCity(item);
                   }}>
                   <Text style={styles.text}>{item}</Text>
                 </Pressable>

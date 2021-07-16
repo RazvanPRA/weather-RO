@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  Pressable,
+} from 'react-native';
 import HeaderSearch from '../Components/HeaderSearch';
 import TheWheatherToday from '../Components/TheWeatherToday ';
 import InfoAboutWheather from '../Components/InfoAboutWheather';
@@ -12,6 +18,7 @@ import Countries from '../Const/Countries';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Entypo';
 import {ScrollView} from 'react-native-gesture-handler';
+import Cities from '../Components/Cities';
 
 const HomeScreen = ({navigation}) => {
   const [isLoading, setLoading] = useState(true);
@@ -51,15 +58,15 @@ const HomeScreen = ({navigation}) => {
   //   );
   // }
 
-  const save = async (item) => {
+  const saveCity = async (item) => {
     try {
       await AsyncStorage.setItem('location', item);
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
-  const load = async () => {
+  const loadCity = async () => {
     try {
       let location = await AsyncStorage.getItem('location');
 
@@ -67,28 +74,73 @@ const HomeScreen = ({navigation}) => {
         setLocation(location);
       }
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
   useEffect(() => {
-    load();
+    loadCity();
+  }, []);
+
+  const [favoriteCities, setFavoriteCities] = useState([]);
+
+  const saveFavoriteCities = async (favoriteCities) => {
+    try {
+      const jsonValue = JSON.stringify(favoriteCities);
+      await AsyncStorage.setItem('cities', jsonValue);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loadFavoriteCities = async () => {
+    try {
+      let jsonValue = await AsyncStorage.getItem('cities');
+
+      if (jsonValue !== null) {
+        setFavoriteCities(JSON.parse(jsonValue));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    loadFavoriteCities();
   }, []);
 
   return (
     <View style={styles.body}>
       <View style={styles.container}>
         <HeaderSearch
-          save={save}
+          saveCity={saveCity}
           location={location}
           setLocation={setLocation}
           setLoading={setLoading}
         />
         <View style={styles.head}>
           <Text style={styles.text}>Today</Text>
-          <View style={styles.iconContent}>
-            <Icon name="heart-outlined" color="#666666" style={styles.icon} />
-          </View>
+          {favoriteCities && favoriteCities.indexOf(location) === -1 ? (
+            <Pressable
+              onPress={() => {
+                setFavoriteCities([...favoriteCities, location]);
+                saveFavoriteCities([...favoriteCities, location]);
+              }}
+              style={styles.iconContent}>
+              <Icon name="heart-outlined" color="#666666" style={styles.icon} />
+            </Pressable>
+          ) : (
+            <Pressable
+              onPress={() => {
+                const newFavoriteCities = [...favoriteCities];
+                newFavoriteCities.splice(favoriteCities.indexOf(location), 1);
+                setFavoriteCities(newFavoriteCities);
+                saveFavoriteCities(newFavoriteCities);
+              }}
+              style={styles.iconContent}>
+              <Icon name="heart" color="#ffffff" style={styles.icon} />
+            </Pressable>
+          )}
         </View>
         {data && (
           <View>
@@ -107,26 +159,7 @@ const HomeScreen = ({navigation}) => {
           <InputDays data={data} hourData={hourData} navigation={navigation} />
         )}
       </View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        decelerationRate="fast"
-        style={styles.scroll}>
-        <View style={styles.arrayCities}>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-          <Text style={styles.cities}>Brasov</Text>
-        </View>
-      </ScrollView>
+      <Cities setLocation={setLocation} favoriteCities={favoriteCities} />
       <View style={styles.container2}>
         {data && <SunrRiseSunSetCoord style={styles.sun} data={data} />}
       </View>
@@ -177,21 +210,6 @@ const styles = StyleSheet.create({
   },
   iconContent: {
     justifyContent: 'center',
-  },
-  arrayCities: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-  },
-  cities: {
-    backgroundColor: COLORS.secondary,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: COLORS.textDark,
-    borderRadius: 18,
-    marginHorizontal: 4.5,
   },
   scroll: {
     paddingTop: 5,
