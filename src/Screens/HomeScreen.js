@@ -159,7 +159,7 @@ const HomeScreen = ({navigation}) => {
           <InputDays data={data} hourData={hourData} navigation={navigation} />
         )}
       </View>
-      <Cities favoriteCities={favoriteCities} />
+      <Cities setLocation={setLocation} favoriteCities={favoriteCities} />
       <View style={styles.container2}>
         {data && <SunrRiseSunSetCoord style={styles.sun} data={data} />}
       </View>

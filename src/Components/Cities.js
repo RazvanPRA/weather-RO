@@ -1,25 +1,30 @@
 import React from 'react';
-import {StyleSheet, Text, ScrollView, Pressable} from 'react-native';
+import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {COLORS} from '../Const/COLORS';
 
-const Cities = ({favoriteCities}) => {
+const Cities = ({setLocation, favoriteCities}) => {
   return (
-    <ScrollView // Sau poti folosi Flatlist
+    <ScrollView
       showsVerticalScrollIndicator={false}
       horizontal
       showsHorizontalScrollIndicator={false}
       decelerationRate="fast"
       style={styles.scroll}>
-      <Pressable onPress={() => {}} style={styles.arrayCities}>
+      <View style={styles.arrayCities}>
         {!!favoriteCities &&
           favoriteCities.map((item) => {
             return (
-              <Text style={styles.cities} key={item}>
+              <Text
+                onPress={() => {
+                  setLocation(item);
+                }}
+                style={styles.cities}
+                key={item}>
                 {item}
               </Text>
             );
           })}
-      </Pressable>
+      </View>
     </ScrollView>
   );
 };
