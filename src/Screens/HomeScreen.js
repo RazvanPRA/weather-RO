@@ -141,31 +141,6 @@ const HomeScreen = ({navigation}) => {
               style={styles.icon}
             />
           </Pressable>
-          {/* {isNotFavourite ? (
-            <Pressable
-              onPress={() => {
-                setFavoriteCities([location, ...favoriteCities]);
-                saveFavoriteCities([location, ...favoriteCities]);
-              }}
-              style={styles.iconContent}>
-              <Icon
-                name="heart-outlined"
-                color={COLORS.textDark}
-                style={styles.icon}
-              />
-            </Pressable>
-          ) : (
-            <Pressable
-              onPress={() => {
-                const newFavoriteCities = [...favoriteCities];
-                newFavoriteCities.splice(favoriteCities.indexOf(location), 1);
-                setFavoriteCities(newFavoriteCities);
-                saveFavoriteCities(newFavoriteCities);
-              }}
-              style={styles.iconContent}>
-              <Icon name="heart" color={COLORS.secondary} style={styles.icon} />
-            </Pressable>
-          )} */}
         </View>
         {data && (
           <View>
@@ -224,6 +199,7 @@ const styles = StyleSheet.create({
     marginTop: 9,
     flex: 1,
     textAlign: 'center',
+    paddingLeft: 31,
   },
   icon: {
     textAlign: 'center',
@@ -232,9 +208,11 @@ const styles = StyleSheet.create({
   head: {
     flexDirection: 'row',
     justifyContent: 'center',
+    paddingBottom: 7,
   },
   iconContent: {
     justifyContent: 'center',
+    paddingTop: 9,
   },
   scroll: {
     paddingTop: 5,
