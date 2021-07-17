@@ -17,7 +17,6 @@ import {COLORS} from '../Const/COLORS';
 import Countries from '../Const/Countries';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/Entypo';
-import {ScrollView} from 'react-native-gesture-handler';
 import Cities from '../Components/Cities';
 
 const HomeScreen = ({navigation}) => {
@@ -109,6 +108,21 @@ const HomeScreen = ({navigation}) => {
     loadFavoriteCities();
   }, []);
 
+  const isFavourite =
+    !!favoriteCities && favoriteCities.indexOf(location) !== -1;
+
+  const handleFavourites = () => {
+    if (isFavourite) {
+      const newFavoriteCities = [...favoriteCities];
+      newFavoriteCities.splice(favoriteCities.indexOf(location), 1);
+      setFavoriteCities(newFavoriteCities);
+      saveFavoriteCities(newFavoriteCities);
+    } else {
+      setFavoriteCities([location, ...favoriteCities]);
+      saveFavoriteCities([location, ...favoriteCities]);
+    }
+  };
+
   return (
     <View style={styles.body}>
       <View style={styles.container}>
@@ -120,14 +134,25 @@ const HomeScreen = ({navigation}) => {
         />
         <View style={styles.head}>
           <Text style={styles.text}>Today</Text>
-          {favoriteCities && favoriteCities.indexOf(location) === -1 ? (
+          <Pressable onPress={handleFavourites} style={styles.iconContent}>
+            <Icon
+              name={isFavourite ? 'heart' : 'heart-outlined'}
+              color={isFavourite ? COLORS.secondary : COLORS.textDark}
+              style={styles.icon}
+            />
+          </Pressable>
+          {/* {isNotFavourite ? (
             <Pressable
               onPress={() => {
-                setFavoriteCities([...favoriteCities, location]);
-                saveFavoriteCities([...favoriteCities, location]);
+                setFavoriteCities([location, ...favoriteCities]);
+                saveFavoriteCities([location, ...favoriteCities]);
               }}
               style={styles.iconContent}>
-              <Icon name="heart-outlined" color="#666666" style={styles.icon} />
+              <Icon
+                name="heart-outlined"
+                color={COLORS.textDark}
+                style={styles.icon}
+              />
             </Pressable>
           ) : (
             <Pressable
@@ -138,9 +163,9 @@ const HomeScreen = ({navigation}) => {
                 saveFavoriteCities(newFavoriteCities);
               }}
               style={styles.iconContent}>
-              <Icon name="heart" color="#ffffff" style={styles.icon} />
+              <Icon name="heart" color={COLORS.secondary} style={styles.icon} />
             </Pressable>
-          )}
+          )} */}
         </View>
         {data && (
           <View>

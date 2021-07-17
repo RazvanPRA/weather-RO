@@ -9,6 +9,7 @@ const Cities = ({setLocation, favoriteCities}) => {
       horizontal
       showsHorizontalScrollIndicator={false}
       decelerationRate="fast"
+      contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 10}}
       style={styles.scroll}>
       <View style={styles.arrayCities}>
         {!!favoriteCities &&

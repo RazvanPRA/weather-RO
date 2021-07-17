@@ -1,20 +1,22 @@
 import React from 'react';
-import {View, ScrollView, Dimensions} from 'react-native';
+import {View, Dimensions, FlatList} from 'react-native';
 import HourCards from './HourCards';
 
 const CarouselMeteo = ({hourData}) => {
+  console.log({hourData});
+
   return (
     <View>
-      <ScrollView
+      <FlatList
+        data={hourData.hourly}
+        initialNumToRender={10}
         horizontal
-        showsHorizontalScrollIndicator={false}
+        decelerationRate="fast"
         snapToInterval={Dimensions.get('screen').width / 4.5}
-        decelerationRate="fast">
-        {hourData &&
-          hourData.hourly.map((item, index) => {
-            return <HourCards item={item} key={index} />;
-          })}
-      </ScrollView>
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => <HourCards item={item} />}
+      />
     </View>
   );
 };
