@@ -132,8 +132,20 @@ const HomeScreen = ({navigation}) => {
           setLocation={setLocation}
           setLoading={setLoading}
         />
+
         <View style={styles.head}>
-          <Text style={styles.text}>Today</Text>
+          <View>
+            <Text
+              onPress={() => {
+                navigation.navigate('Notice');
+              }}
+              style={styles.textNotice}>
+              Notice
+            </Text>
+          </View>
+          <View>
+            <Text style={styles.textToday}>Today</Text>
+          </View>
           <Pressable onPress={handleFavourites} style={styles.iconContent}>
             <Icon
               name={isFavourite ? 'heart' : 'heart-outlined'}
@@ -192,14 +204,20 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     justifyContent: 'space-between',
   },
-  text: {
+  textNotice: {
     color: COLORS.textDark,
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 9,
     flex: 1,
-    textAlign: 'center',
-    paddingLeft: 31,
+  },
+  textToday: {
+    color: COLORS.textDark,
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: 9,
+    flex: 1,
+    paddingRight: 20,
   },
   icon: {
     textAlign: 'center',
@@ -207,7 +225,7 @@ const styles = StyleSheet.create({
   },
   head: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     paddingBottom: 7,
   },
   iconContent: {
